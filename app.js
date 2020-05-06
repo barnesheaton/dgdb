@@ -24,12 +24,16 @@ const Resolvers = require('./resolvers')
 app.use(logger('dev'))
 app.use(cookieParser())
 
-const server = new ApolloServer({ typeDefs: Schema, resolvers: Resolvers })
+const server = new ApolloServer({
+  typeDefs: Schema,
+  resolvers: Resolvers,
+  introspection: true,
+  playground: true
+})
 
 server.applyMiddleware({ app })
 
 app.listen(process.env.PORT || 8080, () => {
-  console.log(process.env.url)
   console.log(
     `GraphQL Server is now running on http://localhost:${process.env.PORT ||
       8080}/graphql`

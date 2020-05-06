@@ -5,7 +5,6 @@ var path = require('path')
 var cookieParser = require('cookie-parser')
 var logger = require('morgan')
 
-const PORT = 8080
 const app = express()
 const { ApolloServer } = require('apollo-server-express')
 
@@ -47,8 +46,10 @@ const server = new ApolloServer({ typeDefs: Schema, resolvers: Resolvers })
 
 server.applyMiddleware({ app })
 
-app.listen(PORT, () =>
+app.listen(process.env.PORT || 8080, () => {
+  console.log(process.env.url)
   console.log(
-    `GraphQL Server is now running on http://localhost:${PORT}/graphql`
+    `GraphQL Server is now running on http://localhost:${process.env.PORT ||
+      8080}/graphql`
   )
-)
+})

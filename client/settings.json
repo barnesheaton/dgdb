@@ -1,0 +1,145 @@
+{
+  // Vanilla Settings
+  "editor.formatOnPaste": true,
+  "editor.formatOnType": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.workingDirectories": [
+    "./web"
+  ],
+  "workbench.statusBar.visible": true,
+  "editor.wordWrap": "on",
+  "explorer.confirmDragAndDrop": false,
+  "breadcrumbs.enabled": true,
+  "window.zoomLevel": 0,
+  "workbench.activityBar.visible": false,
+  "workbench.editor.tabSizing": "shrink",
+  "workbench.colorTheme": "One Dark Pro",
+  "editor.multiCursorModifier": "ctrlCmd",
+  "javascript.updateImportsOnFileMove.enabled": "never",
+  "explorer.confirmDelete": false,
+  "editor.tabSize": 2,
+  "typescript.suggest.autoImports": false,
+  "css.lint.emptyRules": "ignore",
+
+  "files.exclude": {
+    // Root level
+    "**/.github": true,
+    "**/.idea": true,
+    "**/chrome": true,
+    "**/cron": true,
+    "**/db": true,
+    // "**/elk": true,
+    // "**/k8s": true,
+    "**/landing-pages": true,
+    // Web
+    "**/web/docker": true,
+    // "**/web/node_modules": true,
+    // "**/web/public": true,
+    "**/web/dokcer": true,
+    // "**/web/.*": true,
+  },
+
+  // Formatting
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[php]": {
+    "editor.formatOnSave": true,
+  },
+
+  // Eslint
+  "eslint.options": {
+    "extensions": [
+      ".html",
+      ".js",
+      ".vue",
+      ".jsx"
+    ]
+  },
+  "eslint.validate": ["vue", "html", "javascriptreact", "javascript"],
+  // "eslint.validate": [
+  //   {
+  //     "language": "vue",
+  //     "autoFix": true
+  //   },
+  //   {
+  //     "language": "html",
+  //     "autoFix": true
+  //   },
+  //   {
+  //     "language": "javascriptreact",
+  //     "autoFix": true
+  //   },
+  //   {
+  //     "language": "javascript",
+  //     "autoFix": true
+  //   }
+  // ],
+
+  "path-intellisense.mappings": {
+    "@": "${workspaceRoot}/web/src",
+  },
+
+  // PHP Extensions
+  "phpfmt.enable_auto_align": true,
+  "phpfmt.smart_linebreak_after_curly": true,
+  "phpfmt.passes": [
+    "AlignGroupDoubleArrow",
+    "AlignConstVisibilityEquals",
+    "PSR2KeywordsLowerCase",
+    "PSR2LnAfterNamespace",
+    "PSR2CurlyOpenNextLine",
+    "PSR2ModifierVisibilityStaticOrder",
+    "ReindentAndAlignObjOps",
+    // "PSR2SingleEmptyLineAndStripClosingTag",
+    "StripExtraCommaInArray"
+  ],
+
+  "namespaceResolver.highlightOnSave": true,
+  "namespaceResolver.sortAlphabetically": true,
+  "namespaceResolver.exclude": "**app/Nova/**",
+  
+  // GiLens
+  "gitlens.menus": {
+    "editor": {
+      "blame": false,
+      "clipboard": true,
+      "compare": true,
+      "details": false,
+      "history": false,
+      "remote": false
+    },
+    "editorGroup": false,
+    "editorTab": {
+      "clipboard": true,
+      "compare": true,
+      "history": true,
+      "remote": true
+    },
+    "explorer": {
+      "clipboard": true,
+      "compare": true,
+      "history": true,
+      "remote": true
+    },
+    "scmGroup": {
+      "compare": true,
+      "openClose": true,
+      "stash": true,
+      "stashInline": true
+    },
+    "scmItem": {
+      "clipboard": true,
+      "compare": true,
+      "history": true,
+      "remote": true,
+      "stash": true
+    }
+  },
+  "editor.minimap.enabled": false,
+  "[jsonc]": {
+    "editor.defaultFormatter": "HookyQR.beautify"
+  }
+}

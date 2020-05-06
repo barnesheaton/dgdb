@@ -2,11 +2,12 @@ const typeDefinitions = `
 type Game {
   name: String
   description: String
-  players: Number
+  players: Int
 }
 
 type RootQuery {
-  game(name: String, description: String, players: Number): Game
+  game(name: String, description: String, players: Int): Game
+  games: [Game]
 }
 
 schema {

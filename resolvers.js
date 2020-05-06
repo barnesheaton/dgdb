@@ -1,12 +1,10 @@
 const resolveFunctions = {
   RootQuery: {
-    game(_, {
-      name
-    }, ctx) {
-      const president = new ctx.constructor.Game();
-      return game.findGame(name);
-    },
-  },
-};
+    game(_, { name }, ctx) {
+      const game = new ctx.constructor.Game()
+      return game.findGame(name)
+    }
+  }
+}
 
-module.exports = resolveFunctions;
+module.exports = resolveFunctions

@@ -12,6 +12,6 @@ type RootQuery {
 schema {
   query: RootQuery
 }
-`;
+`
 
-module.exports = [typeDefinitions];
+module.exports = [typeDefinitions]

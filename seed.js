@@ -3,27 +3,32 @@ const Game = require('./model')
 const seed = () => {
   const games = [
     {
-      name: 'One',
-      description: 'one',
-      players: 1
+      name: 'Kings',
+      description: 'kings',
+      players: 6
     },
     {
-      name: 'Two',
-      description: 'two',
-      players: 2
+      name: 'Horse race',
+      description: 'race',
+      players: 5
     },
     {
-      name: 'Three',
-      description: 'three',
-      players: 3
+      name: 'Red, black, high low',
+      description: 'Red, black, low',
+      players: 9
     }
   ]
 
   games.forEach(game => {
     const newGame = new Game(game)
-    newGame.save((err, item) => {
-      console.log('saved: ', item)
-    })
+    newGame.findOneAndUpdate(
+      game.name,
+      { $set: { ...game } },
+      { upsert: true },
+      (err, item) => {
+        console.log('saved: ', item)
+      }
+    )
   })
 }
 

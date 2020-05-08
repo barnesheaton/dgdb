@@ -1,25 +1,32 @@
 const express = require('express')
-const Mongoose = require('mongoose')
+const DB_PASSWORD = 'iTN6ghSsnQzqITI2'
 var cookieParser = require('cookie-parser')
 var logger = require('morgan')
 
 const app = express()
 const { ApolloServer } = require('apollo-server-express')
 
-Mongoose.Promise = global.Promise
-Mongoose.connect('mongodb://localhost/apollo', err => {
-  if (err) {
-    return err
-  }
-  return true
-})
+var mongoose = require('mongoose')
+var dev_db_url = `mongodb+srv://barnes:${DB_PASSWORD}@cluster0-rus8x.mongodb.net/test?retryWrites=true&w=majority`
+var mongoDB = process.env.MONGODB_URI || dev_db_url
+mongoose.connect(mongoDB, { useNewUrlParser: true })
+mongoose.Promise = global.Promise
+var db = mongoose.connection
+db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
-// const seed = require('./seed')
-// seed()
+// Mongoose.Promise = global.Promise
+// Mongoose.connect('mongodb://localhost/apollo', err => {
+//   if (err) {
+//     return err
+//   }
+//   return true
+// })
+
+const seed = require('./seed')
+seed()
 
 const Schema = require('./schema')
 const Resolvers = require('./resolvers')
-// const Connectors = require('./connectors')
 
 app.use(logger('dev'))
 app.use(cookieParser())

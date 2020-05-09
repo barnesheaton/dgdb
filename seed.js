@@ -20,8 +20,7 @@ const seed = () => {
   ]
 
   games.forEach(game => {
-    const newGame = new Game(game)
-    newGame.findOneAndUpdate(
+    Game.findOneAndUpdate(
       game.name,
       { $set: { ...game } },
       { upsert: true },

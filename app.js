@@ -11,27 +11,12 @@ const uri =
   process.env.MONGODB_URI ||
   `mongodb+srv://barnes:${DB_PASSWORD}@cluster0-rus8x.mongodb.net/test?retryWrites=true&w=majority`
 const client = new MongoClient(uri, { useNewUrlParser: true })
-client.connect(err => {
-  const collection = client.db('test').collection('devices')
+client.connect(() => {
+  const db = client.db('games')
+  db.on('error', console.error.bind(console, 'MongoDB connection error:'))
   // perform actions on the collection object
   client.close()
 })
-
-// var mongoose = require('mongoose')
-// var dev_db_url = `mongodb+srv://barnes:${DB_PASSWORD}@cluster0-rus8x.mongodb.net/test?retryWrites=true&w=majority`
-// var mongoDB = process.env.MONGODB_URI || dev_db_url
-// mongoose.connect(mongoDB, { useNewUrlParser: true })
-// mongoose.Promise = global.Promise
-// var db = mongoose.connection
-// db.on('error', console.error.bind(console, 'MongoDB connection error:'))
-
-// Mongoose.Promise = global.Promise
-// Mongoose.connect('mongodb://localhost/apollo', err => {
-//   if (err) {
-//     return err
-//   }
-//   return true
-// })
 
 const seed = require('./seed')
 seed()

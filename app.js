@@ -6,13 +6,24 @@ var logger = require('morgan')
 const app = express()
 const { ApolloServer } = require('apollo-server-express')
 
-var mongoose = require('mongoose')
-var dev_db_url = `mongodb+srv://barnes:${DB_PASSWORD}@cluster0-rus8x.mongodb.net/test?retryWrites=true&w=majority`
-var mongoDB = process.env.MONGODB_URI || dev_db_url
-mongoose.connect(mongoDB, { useNewUrlParser: true })
-mongoose.Promise = global.Promise
-var db = mongoose.connection
-db.on('error', console.error.bind(console, 'MongoDB connection error:'))
+const MongoClient = require('mongodb').MongoClient
+const uri =
+  process.env.MONGODB_URI ||
+  `mongodb+srv://barnes:${DB_PASSWORD}@cluster0-rus8x.mongodb.net/test?retryWrites=true&w=majority`
+const client = new MongoClient(uri, { useNewUrlParser: true })
+client.connect(err => {
+  const collection = client.db('test').collection('devices')
+  // perform actions on the collection object
+  client.close()
+})
+
+// var mongoose = require('mongoose')
+// var dev_db_url = `mongodb+srv://barnes:${DB_PASSWORD}@cluster0-rus8x.mongodb.net/test?retryWrites=true&w=majority`
+// var mongoDB = process.env.MONGODB_URI || dev_db_url
+// mongoose.connect(mongoDB, { useNewUrlParser: true })
+// mongoose.Promise = global.Promise
+// var db = mongoose.connection
+// db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
 // Mongoose.Promise = global.Promise
 // Mongoose.connect('mongodb://localhost/apollo', err => {

@@ -2,10 +2,10 @@
   "name": "dgdb",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "type": "module",
   "scripts": {
-    "start": "node app --experimental-modules",
+    "start": "node --experimental-modules app",
     "serve": "nodemon app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

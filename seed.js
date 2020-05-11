@@ -2,7 +2,7 @@ import mongoSeeding from 'mongo-seeding'
 const { Seeder } = mongoSeeding
 
 const config = {
-  database: `${process.env.MONGODB_URI}/${process.env.DB_NAME}`,
+  database: process.env.MONGODB_URI,
   dropCollections: true
 }
 const seeder = new Seeder(config)

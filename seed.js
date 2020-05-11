@@ -13,20 +13,24 @@ const games = {
     {
       name: 'Kings',
       description: 'kings',
-      min_players: 6
+      min_players: 2,
+      max_players: 10
     },
     {
       name: 'Horse race',
       description: 'race',
-      min_players: 5
+      min_players: 2,
+      max_players: 8
     },
     {
       name: 'Red, black, high low',
       description: 'Red, black, low',
-      min_players: 9
+      min_players: 2,
+      max_players: 8
     }
   ]
 }
+
 export default () => {
   seeder.import([games]).then(() => {
     console.log('seeded!')

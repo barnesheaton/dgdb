@@ -9,7 +9,7 @@ import apollo from 'apollo-server-express'
 const { ApolloServer } = apollo
 
 const typeDefs = importSchema('graphql/index.graphql')
-import resolvers from './resolvers.js'
+import resolvers from './resolvers/index.js'
 
 import seed from './seed.js'
 

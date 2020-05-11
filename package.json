@@ -20,6 +20,7 @@
     "graphql": "^15.0.0",
     "graphql-import": "^1.0.2",
     "graphql-tools": "^5.0.0",
+    "graphql-type-json": "^0.3.1",
     "http-errors": "^1.7.3",
     "mongo-seeding": "^3.4.1",
     "mongodb": "^3.5.7",
@@ -39,11 +40,6 @@
     "eslint": "^6.0.0",
     "eslint-config-prettier": "^5.0.0",
     "eslint-plugin-prettier": "^3.1.0",
-    "eslint-plugin-react": "^7.13.0",
-    "eslint-plugin-react-native": "^3.7.0",
-    "jest": "^24.8.0",
-    "metro-react-native-babel-preset": "^0.54.1",
-    "prettier": "^1.18.2",
-    "react-test-renderer": "16.8.3"
+    "jest": "^24.8.0"
   }
 }

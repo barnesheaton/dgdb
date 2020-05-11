@@ -1,15 +1,18 @@
 type Game {
-  name: String
+  id: ID!
+  name: String!
   description: String
-  min_players: Int
+  min_players: Int!
   max_players: Int
 }
 
 type RootQuery {
-  game(name: String, description: String, players: Int): Game
-  games: [Game]
+  getGame(id: ID!): Game
+  getGames(filter: JSON): [Game]
 }
 
 schema {
   query: RootQuery
 }
+
+scalar JSON

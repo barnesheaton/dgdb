@@ -34,6 +34,5 @@ const games = {
 export default () => {
   seeder.import([games]).then(() => {
     console.log('seeded!')
-    // Do whatever you want after successful import
   })
 }

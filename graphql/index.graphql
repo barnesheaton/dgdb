@@ -11,8 +11,8 @@ type Query {
 }
 
 type Mutation {
-  createGame(input: GameInput): Game!
-  updateGame(input: GameInput): Game!
+  createGame(input: GameInput!): Game!
+  updateGame(input: GameInput!, id: ID!): Game!
   deleteGame: Boolean!
 }
 
@@ -25,7 +25,6 @@ type Game {
 }
 
 input GameInput {
-  _id: ID
   name: String!
   description: String
   min_players: Int!

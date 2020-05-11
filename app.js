@@ -16,11 +16,12 @@ import seed from './seed.js'
 // Connect to the DB
 mongoose.connect(process.env.MONGODB_URI, {
   useUnifiedTopology: true,
-  dbName: process.env.DB_NAME
+  dbName: process.env.DB_NAME,
+  useFindAndModify: false
 })
 
 mongoose.connection.on('open', () => {
-  console.log('Connected to mongo server.')
+  console.log('Connected to mongo server!')
   seed()
 })
 
@@ -39,7 +40,18 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   introspection: true,
-  playground: true
+  playground: true,
+  debug: false,
+  formatError: err => {
+    // Don't give the specific errors to the client.
+    if (err.message.startsWith('Database Error: ')) {
+      return new Error('Internal server error')
+    }
+
+    // Otherwise return the original error.  The error can also
+    // be manipulated in other ways, so long as it's returned.
+    return err
+  }
 })
 
 server.applyMiddleware({ app })

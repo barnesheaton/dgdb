@@ -11,6 +11,8 @@ const { ApolloServer } = apollo
 const typeDefs = importSchema('graphql/index.graphql')
 import resolvers from './resolvers.js'
 
+import seed from './seed.js'
+
 // Connect to the DB
 mongoose.connect(process.env.MONGODB_URI, {
   useUnifiedTopology: true,
@@ -19,15 +21,13 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 mongoose.connection.on('open', () => {
   console.log('Connected to mongo server.')
+  seed()
 })
 
 mongoose.connection.on('error', function(err) {
   console.log('Could not connect to mongo server!')
   return console.log(err)
 })
-
-// import seed from './seed.js'
-// seed()
 
 // Start the express server
 const app = express()

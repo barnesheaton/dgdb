@@ -1,35 +1,35 @@
-import Game from './model.js'
+import mongoSeeding from 'mongo-seeding'
+const { Seeder } = mongoSeeding
 
-const seed = () => {
-  const games = [
+const config = {
+  database: `${process.env.MONGODB_URI}/${process.env.DB_NAME}`,
+  dropCollections: true
+}
+const seeder = new Seeder(config)
+
+const games = {
+  name: 'games',
+  documents: [
     {
       name: 'Kings',
       description: 'kings',
-      players: 6
+      min_players: 6
     },
     {
       name: 'Horse race',
       description: 'race',
-      players: 5
+      min_players: 5
     },
     {
       name: 'Red, black, high low',
       description: 'Red, black, low',
-      players: 9
+      min_players: 9
     }
   ]
-
-  games.forEach(game => {
-    const newGame = Game
-    newGame.findOneAndUpdate(
-      game.name,
-      { $set: { ...game } },
-      { upsert: true },
-      (err, item) => {
-        console.log('saved: ', item)
-      }
-    )
+}
+export default () => {
+  seeder.import([games]).then(() => {
+    console.log('seeded!')
+    // Do whatever you want after successful import
   })
 }
-
-export default seed

@@ -1,4 +1,3 @@
-import typeDefinitions from './schema.js'
 import GameModel from './model.js'
 
 class Game {

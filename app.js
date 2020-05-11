@@ -1,14 +1,19 @@
+import mongoose from 'mongoose'
+
 import express from 'express'
-const DB_PASSWORD = 'iTN6ghSsnQzqITI2'
 import cookieParser from 'cookie-parser'
 import logger from 'morgan'
-import mongoose from 'mongoose'
 import apollo from 'apollo-server-express'
 const { ApolloServer } = apollo
 
-var dev_db_url = `mongodb+srv://barnes:${DB_PASSWORD}@cluster0-rus8x.mongodb.net/test?retryWrites=true&w=majority&authSource=admin`
-var mongoDB = process.env.MONGODB_URI || dev_db_url
-mongoose.connect(mongoDB, { useUnifiedTopology: true, dbName: 'dgdb' })
+import typeDefs from './schema.js'
+import resolvers from './resolvers.js'
+
+// Connect to the DB
+mongoose.connect(process.env.MONGODB_URI, {
+  useUnifiedTopology: true,
+  dbName: process.env.DB_NAME
+})
 
 mongoose.connection.on('open', function(ref) {
   console.log('Connected to mongo server.', ref)
@@ -19,28 +24,26 @@ mongoose.connection.on('error', function(err) {
   return console.log(err)
 })
 
-import seed from './seed.js'
-seed()
+// import seed from './seed.js'
+// seed()
 
-import Schema from './schema.js'
-import Resolvers from './resolvers.js'
-
+// Start the express server
 const app = express()
 app.use(logger('dev'))
 app.use(cookieParser())
 
+// Initialize the Apollo Server
 const server = new ApolloServer({
-  typeDefs: Schema,
-  resolvers: Resolvers,
+  typeDefs,
+  resolvers,
   introspection: true,
   playground: true
 })
 
 server.applyMiddleware({ app })
 
-app.listen(process.env.PORT || 8080, () => {
+app.listen(process.env.PORT, () => {
   console.log(
-    `GraphQL Server is now running on http://localhost:${process.env.PORT ||
-      8080}/graphql`
+    `GraphQL Server is now running on ${process.env.MONGODB_URI}/graphql`
   )
 })

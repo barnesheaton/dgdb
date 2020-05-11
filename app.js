@@ -8,7 +8,16 @@ const { ApolloServer } = apollo
 
 var dev_db_url = `mongodb+srv://barnes:${DB_PASSWORD}@cluster0-rus8x.mongodb.net/test?retryWrites=true&w=majority&authSource=admin`
 var mongoDB = process.env.MONGODB_URI || dev_db_url
-mongoose.connect(mongoDB, { useNewUrlParser: true, dbName: 'dgdb' })
+mongoose.connect(mongoDB, { useUnifiedTopology: true, dbName: 'dgdb' })
+
+mongoose.connection.on('open', function(ref) {
+  console.log('Connected to mongo server.', ref)
+})
+
+mongoose.connection.on('error', function(err) {
+  console.log('Could not connect to mongo server!')
+  return console.log(err)
+})
 
 import seed from './seed.js'
 seed()

@@ -1,8 +1,8 @@
-const typeDefinitions = `
 type Game {
   name: String
   description: String
-  players: Int
+  min_players: Int
+  max_players: Int
 }
 
 type RootQuery {
@@ -13,6 +13,3 @@ type RootQuery {
 schema {
   query: RootQuery
 }
-`
-
-export default typeDefinitions

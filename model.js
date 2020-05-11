@@ -1,4 +1,4 @@
-const Mongoose = require('mongoose')
+import Mongoose from 'mongoose'
 
 const GameSchema = Mongoose.Schema({
   name: String,
@@ -9,4 +9,4 @@ const GameSchema = Mongoose.Schema({
 
 const Game = Mongoose.model('Game', GameSchema)
 
-module.exports = Game
+export default Game

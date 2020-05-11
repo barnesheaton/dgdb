@@ -1,29 +1,22 @@
-const express = require('express')
+import express from 'express'
 const DB_PASSWORD = 'iTN6ghSsnQzqITI2'
-var cookieParser = require('cookie-parser')
-var logger = require('morgan')
+import cookieParser from 'cookie-parser'
+import logger from 'morgan'
+import mongoose from 'mongoose'
+import apollo from 'apollo-server-express'
+const { ApolloServer } = apollo
 
-const app = express()
-const { ApolloServer } = require('apollo-server-express')
+var dev_db_url = `mongodb+srv://barnes:${DB_PASSWORD}@cluster0-rus8x.mongodb.net/test?retryWrites=true&w=majority&authSource=admin`
+var mongoDB = process.env.MONGODB_URI || dev_db_url
+mongoose.connect(mongoDB, { useNewUrlParser: true, dbName: 'dgdb' })
 
-const MongoClient = require('mongodb').MongoClient
-const uri =
-  process.env.MONGODB_URI ||
-  `mongodb+srv://barnes:${DB_PASSWORD}@cluster0-rus8x.mongodb.net/test?retryWrites=true&w=majority`
-const client = new MongoClient(uri, { useNewUrlParser: true })
-client.connect(() => {
-  const db = client.db('games')
-  db.on('error', console.error.bind(console, 'MongoDB connection error:'))
-  // perform actions on the collection object
-  client.close()
-})
-
-const seed = require('./seed')
+import seed from './seed.js'
 seed()
 
-const Schema = require('./schema')
-const Resolvers = require('./resolvers')
+import Schema from './schema.js'
+import Resolvers from './resolvers.js'
 
+const app = express()
 app.use(logger('dev'))
 app.use(cookieParser())
 

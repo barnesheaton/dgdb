@@ -1,4 +1,4 @@
-const Game = require('./model')
+import Game from './model.js'
 
 const seed = () => {
   const games = [
@@ -20,7 +20,8 @@ const seed = () => {
   ]
 
   games.forEach(game => {
-    Game.findOneAndUpdate(
+    const newGame = Game
+    newGame.findOneAndUpdate(
       game.name,
       { $set: { ...game } },
       { upsert: true },
@@ -31,4 +32,4 @@ const seed = () => {
   })
 }
 
-module.exports = seed
+export default seed

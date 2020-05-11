@@ -1,4 +1,5 @@
-const GameModel = require('./model')
+import typeDefinitions from './schema.js'
+import GameModel from './model.js'
 
 class Game {
   constructor() {
@@ -17,10 +18,6 @@ class Game {
   }
 }
 
-module.exports = {
-  Game
-}
-
 const resolveFunctions = {
   RootQuery: {
     games() {
@@ -34,4 +31,4 @@ const resolveFunctions = {
   }
 }
 
-module.exports = resolveFunctions
+export default resolveFunctions

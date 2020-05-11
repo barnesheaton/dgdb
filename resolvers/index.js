@@ -1,12 +1,14 @@
 import GraphQLJSON from 'graphql-type-json'
-import * as gameResolvers from './game.js'
-
-console.log(gameResolvers)
+import * as gameQueries from './gameQueries.js'
+import * as gameMutations from './gameMutations.js'
 
 const resolveFunctions = {
   JSON: GraphQLJSON,
-  RootQuery: {
-    ...gameResolvers
+  Query: {
+    ...gameQueries
+  },
+  Mutation: {
+    ...gameMutations
   }
 }
 

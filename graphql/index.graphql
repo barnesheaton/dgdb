@@ -1,18 +1,33 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+scalar JSON
+
+type Query {
+  getGame(id: ID!): Game
+  getGames(filter: JSON): [Game]
+}
+
+type Mutation {
+  createGame(input: GameInput): Game!
+  updateGame(input: GameInput): Game!
+  deleteGame: Boolean!
+}
+
 type Game {
-  id: ID!
+  _id: ID!
   name: String!
   description: String
   min_players: Int!
   max_players: Int
 }
 
-type RootQuery {
-  getGame(id: ID!): Game
-  getGames(filter: JSON): [Game]
+input GameInput {
+  _id: ID
+  name: String!
+  description: String
+  min_players: Int!
+  max_players: Int
 }
-
-schema {
-  query: RootQuery
-}
-
-scalar JSON
